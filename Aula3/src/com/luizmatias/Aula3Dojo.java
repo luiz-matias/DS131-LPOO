@@ -1,6 +1,5 @@
 package com.luizmatias;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Aula3Dojo {
@@ -46,7 +45,7 @@ public class Aula3Dojo {
                     System.out.printf("Mínimo: %.2f, Máximo: %.2f, Média: %.2f", minValue, maxValue, average);
                     System.out.println();
                 }
-            } catch (InputMismatchException | NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Você digitou um valor inválido.");
             }
         }
