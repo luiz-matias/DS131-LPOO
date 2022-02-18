@@ -17,32 +17,37 @@ public class Aula3Dojo {
 
         while (!userWantsToQuit) {
             try {
-                System.out.println("Digite um número ou qualquer outro valor para sair.");
-                float value = s.nextFloat();
+                System.out.println("Digite um número ou S para sair.");
+                String value = s.next();
 
-                if (firstInteraction) {
-                    minValue = value;
-                    maxValue = value;
-                    average = value;
-                    firstInteraction = false;
+                if (value.equalsIgnoreCase("s")) {
+                    userWantsToQuit = true;
+                } else {
+                    float valueFormatted = Float.parseFloat(value);
+
+                    if (firstInteraction) {
+                        minValue = valueFormatted;
+                        maxValue = valueFormatted;
+                        average = valueFormatted;
+                        firstInteraction = false;
+                    }
+
+                    if (minValue > valueFormatted) {
+                        minValue = valueFormatted;
+                    }
+
+                    if (maxValue < valueFormatted) {
+                        maxValue = valueFormatted;
+                    }
+
+                    average = ((average * interactions) + valueFormatted) / (interactions + 1);
+                    interactions++;
+
+                    System.out.printf("Mínimo: %.2f, Máximo: %.2f, Média: %.2f", minValue, maxValue, average);
+                    System.out.println();
                 }
-
-                if (minValue > value) {
-                    minValue = value;
-                }
-
-                if (maxValue < value) {
-                    maxValue = value;
-                }
-
-                average = ((average * interactions) + value) / (interactions + 1);
-                interactions++;
-
-                System.out.printf("Mínimo: %.2f, Máximo: %.2f, Média: %.2f", minValue, maxValue, average);
-                System.out.println();
-
-            } catch (InputMismatchException e) {
-                userWantsToQuit = true;
+            } catch (InputMismatchException | NumberFormatException e) {
+                System.out.println("Você digitou um valor inválido.");
             }
         }
 
